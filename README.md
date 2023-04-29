@@ -38,8 +38,8 @@ Dataset was loaded using the [huggingface datasets](https://huggingface.co/docs/
 ## Project Structure
 The project structure is as follows:
 * [data_loader.py](data_loader.py) - prepares the dataset
-* [gpt.py](model.py) - defines the model
-* [train.py](train.py) - trains and predicts the model
+* [gpt.py](gpt.py) - defines the model
+* [trainer.py](trainer.py) - trains and predicts the model
 * [gradio_ui.py](gradio_ui.py) - renders the UI
 
 ## Examples:
