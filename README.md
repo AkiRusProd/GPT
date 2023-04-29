@@ -28,7 +28,7 @@ model = GPT(
 Parameters count of model with this configuation: 51.035.733.
 
 ### Tokenization:
-Text was tokenied using the [GPT2Tokenizer ](https://huggingface.co/docs/transformers/model_doc/gpt2#transformers.GPT2Tokenizer) from the [HuggingFace transformers](https://huggingface.co/docs/transformers/index) library.
+Text was tokenized using the [GPT2Tokenizer ](https://huggingface.co/docs/transformers/model_doc/gpt2#transformers.GPT2Tokenizer) from the [HuggingFace transformers](https://huggingface.co/docs/transformers/index) library.
 
 ### Dataset:
 Dataset on which the model was trained is [tweet_eval](https://huggingface.co/datasets/tweet_eval) dataset.
