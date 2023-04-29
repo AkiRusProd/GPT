@@ -3,8 +3,10 @@ This is an implementation of the GPT (Generative Pre-trained Transformer) model 
 
 
 <p align="center">
-<img src="images/gpt-architecture.png" width=50% height=50%>
+<img src="images/gpt-architecture.png" width=25% height=25%>
 </p>
+In fact it's just a transformer decoder.
+
 
 ## Training
 The model was trained for 5 epochs. 
