@@ -1,11 +1,12 @@
 import torch
 import os
+
+# I like to move downloaded datasets to another location
 os.environ['HF_DATASETS_CACHE'] = 'D:\\Code\\Huggingface_cache\\'
-os.environ['HUGGINGFACE_HUB_CACHE'] = 'D:\\Code\\Huggingface_cache\\'
 
 
 from transformers import DataCollatorWithPadding
-from transformers import AutoTokenizer, GPT2Tokenizer
+from transformers import GPT2Tokenizer
 from datasets import load_dataset
 
 
@@ -40,15 +41,12 @@ class MyDataset(torch.utils.data.Dataset):
 
 if __name__ == '__main__':
     tokenizer = GPT2Tokenizer.from_pretrained('gpt2')
-    # tokenizer.pad_token = tokenizer.eos_token
+    
     SPECIAL_TOKENS = {'bos_token':'<bos>','eos_token' :'<eos>', 'pad_token':'<pad>', 'sep_token': '<sep>'}
     tokenizer.add_special_tokens(SPECIAL_TOKENS)
-    # print(tokenizer.encode('<pad>'))
+    
     data = load_dataset("tweet_eval", "emoji", split="train")
     print(data)
-
-    
-    data_collator = DataCollatorWithPadding(tokenizer=tokenizer, return_tensors="pt")
 
     dataset = MyDataset(data, tokenizer)
     torch.save(dataset, 'dataset.pt')

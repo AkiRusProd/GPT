@@ -3,5 +3,5 @@
 *.pyo
 *.pkl
 *.pt
-*saved_models/*
+# *saved_models/*
 gpt_test.py

@@ -1,7 +1,7 @@
 import os
 # I like to move downloaded datasets to another location
 os.environ['HF_DATASETS_CACHE'] = 'D:\\Code\\Huggingface_cache\\'
-os.environ['HUGGINGFACE_HUB_CACHE'] = 'D:\\Code\\Huggingface_cache\\'
+
 
 import torch
 import torch.nn as nn
@@ -173,15 +173,16 @@ loss_fn = nn.CrossEntropyLoss().to("cuda") #ignore_index = tokenizer.encode(toke
 
 
 gpt_interface = GPTInterface(
-        model = model, 
-        tokenizer = tokenizer, 
-        optimizer = optimizer, 
-        scheduler = None,
-        loss_fn = loss_fn, 
-        dataloader = dataloader)
+    model = model, 
+    tokenizer = tokenizer, 
+    optimizer = optimizer, 
+    scheduler = None,
+    loss_fn = loss_fn, 
+    dataloader = dataloader
+)
 
 
-# gpt_interface.fit(epochs = 5, save_path = "saved_models/gpt_model.pt")
+gpt_interface.fit(epochs = 5, save_path = "saved_models/gpt_model.pt")
 
 print(gpt_interface.predict("I"))
 
