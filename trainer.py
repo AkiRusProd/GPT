@@ -83,6 +83,7 @@ class GPTInterface:
         if save_path is not None:
             torch.save(self.model.state_dict(), save_path)
 
+    # @torch.no_grad()
     # def predict(self, text, max_length = 50): # deterministic prediction
     #     self.model.eval()
 
@@ -105,6 +106,7 @@ class GPTInterface:
 
     #     return self.tokenizer.decode(inputs, skip_special_tokens=True)
 
+    @torch.no_grad()
     def predict(self, text, max_length=50, temperature=0.3): # probabilistic prediction
         self.model.eval()
 
@@ -146,7 +148,7 @@ class GPTInterface:
 
 model = GPT(
     vocab_size=len(tokenizer), #tokenizer.vocab_size,
-    n_layers = 6,
+    n_layers = 8,
     n_heads = 8,
     d_model= 512,
     resid_dropout=0.1,
@@ -161,7 +163,7 @@ model = GPT(
 try:
     model.load_state_dict(torch.load("saved_models/gpt_model.pt"))
 except:
-    print("Can't load pre-trained model. Start training from scratch")
+    print("Can't load pre-trained model")
 
 optimizer = AdamW(model.parameters(), lr=1.5e-4, betas=(0.9, 0.98), eps=1e-9) #lr = 0.0001; 5e-4; 3e-5
 # scheduler = CosineAnnealingLR(optimizer, T_max=10, eta_min=1e-6)
@@ -179,7 +181,7 @@ gpt_interface = GPTInterface(
         dataloader = dataloader)
 
 
-# gpt_interface.fit(epochs = 30, save_path = "saved_models/gpt_model.pt")
+# gpt_interface.fit(epochs = 5, save_path = "saved_models/gpt_model.pt")
 
 print(gpt_interface.predict("I"))
 

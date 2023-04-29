@@ -13,6 +13,7 @@ class GPT2Generator:
 
         self.tokenizer = tokenizer
         
+    @torch.no_grad()
     def generate_text(self, text, max_length=50, temperature = 1.0): # probabilistic prediction
         tokenized = self.tokenizer('<bos>' + text, return_tensors="pt")
         inputs = tokenized["input_ids"].to(self.device)
@@ -46,7 +47,7 @@ tokenizer.add_special_tokens(SPECIAL_TOKENS)
 
 model = GPT(
     vocab_size=len(tokenizer), #tokenizer.vocab_size,
-    n_layers = 6,
+    n_layers = 8,
     n_heads = 8,
     d_model= 512,
     resid_dropout=0.1,
@@ -72,7 +73,7 @@ def generate_text(text: str, model_output_len: int, temperature: float = 1.0):
     return generator.generate_text(text, model_output_len, temperature)
 inputs = [
     gr.Textbox(label="Input"),
-    gr.Slider(minimum=10, maximum=64, value=32, label="Output length"),
+    gr.Slider(minimum=10, maximum=64, value=32, step=1, label="Output length"),
     gr.Slider(minimum=0.0, maximum=1.0, value=1.0, label="Temperature"),
 ]
 outputs = gr.Textbox(label="Generated text:")

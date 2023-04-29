@@ -44,7 +44,7 @@ if __name__ == '__main__':
     SPECIAL_TOKENS = {'bos_token':'<bos>','eos_token' :'<eos>', 'pad_token':'<pad>', 'sep_token': '<sep>'}
     tokenizer.add_special_tokens(SPECIAL_TOKENS)
     # print(tokenizer.encode('<pad>'))
-    data = load_dataset("tweet_eval", "emoji", split="validation")
+    data = load_dataset("tweet_eval", "emoji", split="train")
     print(data)
 
     
